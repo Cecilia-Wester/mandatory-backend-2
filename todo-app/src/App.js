@@ -1,11 +1,19 @@
 import React from 'react';
-import logo from './logo.svg';
+import { BrowserRouter, Route, Link } from "react-router-dom";
+import {HelmetProvider} from 'react-helmet-async'
 import './App.css';
 
 export default function App() {
   return (
     <div className="App">
-      <p>hello world</p>
+      <HelmetProvider>
+        <Router>
+          <Route exact path='/' component={} />
+          <Route path = '/todos' component={} />
+        </Router>
+        <p>hello world</p>
+      </HelmetProvider>
+      
     </div>
   );
 }
