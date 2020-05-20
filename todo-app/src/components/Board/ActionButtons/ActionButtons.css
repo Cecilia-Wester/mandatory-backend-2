@@ -1,0 +1,23 @@
+.actionButtons__button {
+    margin-bottom: 8px;
+}
+
+.addCard__card{
+    min-height: 80px;
+    min-width: 272px;
+    padding: 6px 8px 2px;
+    margin-top: 8px;
+}
+
+.addCard__input{
+    resize: none;
+    width: 100%;
+    outline: none;
+    border: none;
+    overflow: hidden;
+}
+
+.addCard__closeIcon{
+    margin-left: 8px;
+    cursor: pointer;
+}

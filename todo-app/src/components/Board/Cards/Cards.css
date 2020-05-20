@@ -1,0 +1,11 @@
+.cards__container{
+    width: 90%;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+.cards__cardContent{
+    width: 300px;
+    box-sizing: border-box;
+    margin: 10px;
+}
