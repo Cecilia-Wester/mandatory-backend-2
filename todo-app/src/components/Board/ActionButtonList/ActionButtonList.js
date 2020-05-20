@@ -10,10 +10,8 @@ export default function ActionButtonList({ isEditingList, setIsEditingList, list
     
     function onSubmitList(e){
         e.preventDefault();
-        console.log(listTitle)
         setIsEditingList(false);
         if(listTitle){
-            
             axios.post('/lists', {
                 listTitle: listTitle,
             })

@@ -35,13 +35,13 @@ app.post('/lists', (req, res) => {
     const db = getDB();
     let data = res.data;
     db.collection('Lists')
-    .find()
-    .toArray()
-    .then(data => {
-        res.send(data);
+    .insertOne(data)
+    .then(respons => {
+        data._id = res.insertedId;
+        res.status(201).send(data);
     })
     .catch(err => {
-        res.status(500).end();
+        res.status(400).end();
     });
 });
 
