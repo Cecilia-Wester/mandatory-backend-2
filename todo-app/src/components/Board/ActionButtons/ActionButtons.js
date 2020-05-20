@@ -8,7 +8,7 @@ import { Card } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import moment from 'moment';
 
-export default function ActionButtons({  lists, listId, setListId, cardTitle, setCardTitle, cardText, isEditing, setIsEditing, setCardText, fetchCard}) {
+export default function ActionButtons({  lists, listId, setListId, setCardTitle, cardTitle, isEditing, setIsEditing, setCardText, fetchCard}) {
     function onClickCard (e){
         e.preventDefault();
         setIsEditing(true);
@@ -25,7 +25,7 @@ export default function ActionButtons({  lists, listId, setListId, cardTitle, se
             })
             .then(res => {
                 console.log(res)
-                setCardText(cardText)
+                setCardTitle(cardTitle)
                 fetchCard();
             })
             .catch(err =>{
@@ -38,7 +38,7 @@ export default function ActionButtons({  lists, listId, setListId, cardTitle, se
 
     if (isEditing){
         return(
-            <div classname='addCard'>
+            <div className='addCard'>
                 <form onSubmit={(e) => onSubmitCard(e) } className='addCard__form'>
                     <Card className='addCard__card'>
                         <TextareaAutosize

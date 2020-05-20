@@ -12,13 +12,14 @@
 .list__allLists{
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
+
 }
 
 .list__singleList{
     width: 300px;
     background-color: #eeeeee;
     display: flex;
-    flex-direction: column;
     align-items: center;
     border-radius: 8px;
     margin:10px;

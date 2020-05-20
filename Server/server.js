@@ -18,7 +18,7 @@ const fetchCard = db.collection('Lists').find().toArray()
 
 app.get('/lists', (req, res) => {
     const db = getDB();
-    let data = res.data;
+    let data = req.data;
     db.collection('Lists')
     .find()
     .toArray()
@@ -33,11 +33,11 @@ app.get('/lists', (req, res) => {
 
 app.post('/lists', (req, res) => {
     const db = getDB();
-    let data = res.data;
+    let data = req.body;
     db.collection('Lists')
     .insertOne(data)
-    .then(respons => {
-        data._id = res.insertedId;
+    .then(result => {
+        data._id = result.insertedId;
         res.status(201).send(data);
     })
     .catch(err => {
@@ -47,7 +47,7 @@ app.post('/lists', (req, res) => {
 
 app.get('/cards', (req,res) => {
     const db=getDB()
-    let data = res.data;
+    let data = req.data;
     
     db.collection('Cards')
         .find()

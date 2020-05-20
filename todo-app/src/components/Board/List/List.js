@@ -25,9 +25,9 @@ export default function List () {
     function fetchList(){
         axios.get('/lists')
         .then(res => {
-            console.log(res.data)
-            setListId(res.data)
-            //  setLists(lists => [...res.data.map((lists, index) => key={index}, lists.listTitle)])
+            console.log(res.data);
+            setLists(res.data);
+            
         })
         .catch(err =>{
             console.log(err)
@@ -38,44 +38,47 @@ export default function List () {
         axios.get('/cards')
         .then(res => {
             console.log(res.data)
-            setCards( cards => [...res.data.map((cards) => cards.cardTitle)]);
+            setCards(res.data);
         })
         .catch(error => {
         });
     }
-
-    console.log(cards)
-    console.log(lists)
+    cards.map(card => {
+        return(
+            console.log(card)
+        )
+    })
     return(
         <div className='list__container'>
             <header>
                 <h3>Add your Lists and Cards</h3>
             </header>
-            <div className='list__singleList'>
             {lists.map(list => {
-                setListId(list.listId)
                 console.log(list)
                 return(
-                    <div key={list._id} classname='list__list'>
+                <div className='list__singleList'>
+                    <div key={list._id} className='list__list'>
                         <div className='list__render' >
-                            <h3>{listTitle}</h3>
-                            {cards.map((card) => {
+                            <h3>{list.listTitle}</h3>
+                            {/* {cards.map((card) => {
                                 console.log(card)
-                                if(list.listId === card.listId){
+                                if(listId === listId){
                                     return(
                                         <div key={card._id} className='list__singleList__card'>
                                             <Cards cardTitle={card} />
                                         </div>
                                     )}
-                            })}
+                            })} */}
+                            <ActionButtons  listTitle={list.listTitle} cardTitle={cardTitle} setCardTitle={setCardTitle} cards={cards} isEditing={isEditing} setIsEditing={setIsEditing} fetchCard={fetchCard}/>
+
                         </div>
-                        <ActionButtons  listTitle={listTitle} cardTitle={cardTitle} setCardTitle={setCardTitle} cards={cards} isEditing={isEditing} setIsEditing={setIsEditing} fetchCard={fetchCard}/>
+                    </div>
                     </div>
                 )
             })}
             <ActionButtonList  isEditingList={isEditingList} setIsEditingList={setIsEditingList} listTitle={listTitle} setListTitle={setListTitle} fetchList={fetchList}/>
         </div>
     
-        </div>
+        
     )
 }
