@@ -1,4 +1,4 @@
-.list__container{
+.lists__container{
     width: 80%;
     height: 80vh;
     margin: auto;
@@ -9,14 +9,18 @@
     background-color: white;
 }
 
-.list__allLists{
+.lists__container header {
+    width:100%
+}
+
+.lists__allLists{
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
 
 }
 
-.list__singleList{
+.lists__singleList{
     width: 300px;
     background-color: #eeeeee;
     display: flex;

@@ -21,7 +21,7 @@ export default function ActionButtonList({ isEditingList, setIsEditingList, list
                 fetchList();
             })
             .catch(err =>{
-                console.log(err)
+                console.log(err);
             });
         }
         return;

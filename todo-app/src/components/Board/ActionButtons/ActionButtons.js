@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import './ActionButtons.css';
@@ -8,7 +8,9 @@ import { Card } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import moment from 'moment';
 
-export default function ActionButtons({  lists, listId, setListId, setCardTitle, cardTitle, isEditing, setIsEditing, setCardText, fetchCard}) {
+export default function ActionButtons({  lists, listId, setListId, setCardTitle, cardTitle, setCardText, fetchCard}) {
+    const [isEditing, setIsEditing] = useState(false);
+    console.log(listId)
     function onClickCard (e){
         e.preventDefault();
         setIsEditing(true);

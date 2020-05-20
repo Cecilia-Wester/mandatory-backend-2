@@ -4,7 +4,7 @@ import {HelmetProvider} from 'react-helmet-async'
 import './App.css';
 import Boards from './components/Boards/Boards';
 import Header from './components/Header/Header';
-import Cards from './components/Board/List/List';
+import Cards from './components/Board/Lists/Lists';
 
 export default function App() {
   return (
