@@ -8,9 +8,9 @@ import { Card } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import moment from 'moment';
 
-export default function ActionButtons({  lists, listId, setListId, setCardTitle, cardTitle, setCardText, fetchCard}) {
+export default function ActionButtons({  lists, listId, setListId, setCardTitle, cardTitle, cardDescription, setCardDescription, setCardText, fetchCard}) {
     const [isEditing, setIsEditing] = useState(false);
-    console.log(listId)
+
     function onClickCard (e){
         e.preventDefault();
         setIsEditing(true);
@@ -23,7 +23,8 @@ export default function ActionButtons({  lists, listId, setListId, setCardTitle,
             axios.post('/cards', {
                 cardTitle: cardTitle,
                 listId: listId,
-                time: moment().format('MMMM Do YYYY, h:mm:ss a')
+                time: moment().format('MMMM Do YYYY, h:mm:ss a'),
+                cardDescription: null
             })
             .then(res => {
                 console.log(res)

@@ -36,7 +36,7 @@ export default function ActionButtonList({ isEditingList, setIsEditingList, list
                         type='text'
                         text={listTitle}
                         name='list'
-                        onChange={(e) => setListTitle(e.target.value)}
+                        onChange={(e) => setListTitle(e.target.value) }
                         placeholder='Enter a title...'
                         autoFocus
                         //onBlur={setIsEditing(false)}

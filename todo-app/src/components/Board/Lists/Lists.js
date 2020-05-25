@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Lists.css';
-import  axios  from 'axios';
+import Axios  from 'axios';
 import ActionButtonList from '../ActionButtonList/ActionButtonList';
 import List from './List'
 
@@ -15,11 +15,10 @@ export default function Lists () {
     }, [])
 
     function fetchList(){
-        axios.get('/lists')
+        Axios.get('/lists')
         .then(res => {
             console.log(res.data);
             setLists(res.data);
-            
         })
         .catch(err =>{
             console.log(err)
@@ -34,14 +33,11 @@ export default function Lists () {
             {lists.map(list => {
                 return(
                     <div key={list._id} className='list__singleList'>
-                        <List listId={list._id} listTitle={list.listTitle} />
+                        <List listId={list._id} listTitle={list.listTitle} lists={lists} />
                     </div>
-                    
                 )
             })}
-            <ActionButtonList  isEditingList={isEditingList} setIsEditingList={setIsEditingList} listTitle={listTitle} setListTitle={setListTitle} fetchList={fetchList}/>
+            <ActionButtonList isEditingList={isEditingList} setIsEditingList={setIsEditingList} listTitle={listTitle} setListTitle={setListTitle} fetchList={fetchList}/>
         </div>
-    
-        
     )
 }
