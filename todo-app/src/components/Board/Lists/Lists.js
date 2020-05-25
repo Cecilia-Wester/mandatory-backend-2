@@ -26,18 +26,20 @@ export default function Lists () {
     }
 
     return(
-        <div className='list__container'>
+        <div className='lists__container'>
             <header>
                 <h3>Add your Lists and Cards</h3>
             </header>
-            {lists.map(list => {
-                return(
-                    <div key={list._id} className='list__singleList'>
-                        <List listId={list._id} listTitle={list.listTitle} lists={lists} />
-                    </div>
-                )
-            })}
-            <ActionButtonList isEditingList={isEditingList} setIsEditingList={setIsEditingList} listTitle={listTitle} setListTitle={setListTitle} fetchList={fetchList}/>
+            <div className='lists__allSingleLists'>
+                {lists.map(list => {
+                    return(
+                        <div key={list._id} className='list__singleList'>
+                            <List listId={list._id} setListId={setListId} listTitle={list.listTitle} lists={lists} fetchList={fetchList} />
+                        </div>
+                    )
+                })}
+                <ActionButtonList isEditingList={isEditingList} setIsEditingList={setIsEditingList} listTitle={listTitle} setListTitle={setListTitle} fetchList={fetchList}/>
+            </div>
         </div>
     )
 }

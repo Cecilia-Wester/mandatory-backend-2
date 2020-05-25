@@ -1,0 +1,16 @@
+.list__container{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    background-color: teal;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    align-items: center;
+    justify-content: center;
+}
+
+.list__singleList__card{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import './Cards.css';
 import CardModal from '../CardModal/CardModal';
 
-export default function Cards({cardTitle, setCardTitle, cardId, cardDescription, listId, time, setCardDescription, fetchCard, lists}) {
+export default function Cards({cardTitle, setCardTitle, cardId, cardDescription, listId, setListId, time, setCardDescription, fetchCard, lists, fetchList}) {
     const [cardModal, setCardModal] = useState(false);
     return(
         <div className='cards__container'>
@@ -18,7 +18,7 @@ export default function Cards({cardTitle, setCardTitle, cardId, cardDescription,
                     </Typography>
                 </CardContent>
             </Card>
-            {cardModal && <CardModal setCardModal={setCardModal} cardTitle={cardTitle} setCardTitle={setCardTitle} cardId={cardId} time={time} cardDescription={cardDescription} setCardDescription={setCardDescription} listId={listId} fetchCard={fetchCard} lists={lists} />}
+            {cardModal && <CardModal setCardModal={setCardModal} cardTitle={cardTitle} setCardTitle={setCardTitle} cardId={cardId} time={time} cardDescription={cardDescription} setCardDescription={setCardDescription} listId={listId} setListId={setListId} fetchCard={fetchCard} lists={lists} fetchList={fetchList} />}
         </div>
     )
 }

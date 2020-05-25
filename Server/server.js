@@ -6,15 +6,19 @@ const {getClient, getDB, createObjectId} = require('./db');
 
 app.use(express.json());
 
+app.use((req, res, next) => {
+    const startHrTime = Date.now();
+    res.once('finish', () => {
+        const elapsedHrTime = Date.now();
+        const elapsedTimeInMs = (elapsedHrTime - startHrTime);
+        console.log( req.method, req.path, res.statusCode, elapsedTimeInMs + ' ms' )
+    })
+    next();
+});
+
 app.get('/', (req, res) => {
     res.send('hello world');
 });
-
-// const db=getDB()
-// const fetchCard = db.collection('Lists').find({_id: createObjectId(cardId)}).toArray()
-// .then(res => {
-//     console.log(res)
-// })
 
 app.get('/lists', (req, res) => {
     const db = getDB();
@@ -77,13 +81,12 @@ app.post('/cards', (req, res) => {
 
 app.delete('/cards/:id', (req, res) => {
     let cardId = req.params.id;
-    
     const db = getDB();
     db.collection('Cards')
     .removeOne({_id: createObjectId(cardId)})
     .then(card => {
         console.log('card deleted')
-        res.status(200).send('card deleted', card)
+        res.status(200).send('card deleted')
     })
     .catch(err => {
         res.status(500).send(err)
@@ -96,45 +99,16 @@ app.patch('/cards/:id', (req, res) => {
     const db = getDB();
     console.log(data)
     db.collection('Cards')
-        .updateOne({_id: createObjectId(cardId)},{$set:{cardDescription: data.cardDescription, cardTitle: data.cardTitle}})
-        .then(result => {
-            res.status(200).send(result);
-        })
-        .catch(err => {
-            console.log(err)
-            res.status(500).send(err);
-        })
+    .updateOne({_id: createObjectId(cardId)},{$set:{cardDescription: data.cardDescription, cardTitle: data.cardTitle, listId: data.listId}})
+    .then(result => {
+        res.status(200).send('card updated');
+    })
+    .catch(err => {
+        console.log(err)
+        res.status(500).send();
+    });
 })
-    //console.log('id: ' + cardId + ' data: ' + data)
-    
-    // let where = {_id: 'ObjectId("' + cardId + '")' }
-    // console.log(where)
-    // let newValues = {$set:{cardDescription: data.cardDescription, cardTitle: data.cardTitle} }
 
-    // if (data.cardDescription === undefined)
-    // {
-    //     newValues = {$set:{ cardTitle: data.cardTitle} }
-    // }
-    // console.log(newValues)
-
-    // const db = getDB();
-    // db.collection('Cards')
-    // .updateOne(where, newValues, function(err, res) {
-    //     if (err) throw err;
-    //     console.log("1 document updated");
-    // });
-
-
-
-    // .updateOne(where, newValues, function(err,res))
-    // .then(card => {
-    //     console.log('card updated');
-    //     res.status(200).send();
-    // })
-    // .catch(err => {
-    //     console.log(err);
-    // })
-//})
 app.delete('/lists/:id', (req, res) => {
     let listId = req.params.id;
     const db = getDB()

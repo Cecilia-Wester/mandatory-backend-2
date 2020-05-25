@@ -3,8 +3,9 @@ import axios from 'axios'
 import ActionButtons from '../ActionButtons/ActionButtons';
 import Cards from '../Cards/Cards';
 import { Button } from '@material-ui/core';
+import './List.css';
 
-export default function List ({listId, listTitle, fetchList, lists}){
+export default function List ({listId, setListId, listTitle, fetchList, lists, fetchCard}){
     const [cardTitle, setCardTitle] = useState('')
     const [cards, setCards] = useState([]);
     const [cardDescription, setCardDescription] = useState('');
@@ -36,22 +37,21 @@ export default function List ({listId, listTitle, fetchList, lists}){
     }
 
     return(
-        <div className='List__container'>
-            <div className='list__render' >
+        <div className='list__container'>
+            <header>
                 <h3>{listTitle}</h3>
                 <Button className='deleteList' onClick={(e) => listDelete(e, listId)}>Delete</Button>
-                {cards.map((card) => {
-                    if(listId === card.listId){
-                        return(
-                            <div key={card._id} className='list__singleList__card'>
-                                <Cards cardTitle={card.cardTitle} setCardTitle={setCardTitle} cardId={card._id} cardDescription={card.cardDescription} setCardDescription={setCardDescription} listId={card.listId} time={card.time} lists={lists}/>
-                            </div>
-                        )}
-                    return;
-                })}
-                <ActionButtons listId={listId} cardTitle={cardTitle} setCardTitle={setCardTitle} cards={cards} fetchCard={fetchCard} />
-            </div>
-
+            </header>
+            {cards.map((card) => {
+                if(listId === card.listId){
+                    return(
+                        <div key={card._id} className='list__singleList__card'>
+                            <Cards cardTitle={card.cardTitle} setCardTitle={setCardTitle} cardId={card._id} cardDescription={card.cardDescription} setCardDescription={setCardDescription} listId={card.listId} setListId={setListId} time={card.time} lists={lists} fetchCard={fetchCard} fetchList={fetchList} />
+                        </div>
+                    )}
+                return;
+            })}
+            <ActionButtons listId={listId} cardTitle={cardTitle} setCardTitle={setCardTitle} cards={cards} fetchCard={fetchCard} />
         </div>
     )
 }

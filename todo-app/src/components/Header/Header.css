@@ -6,8 +6,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #eee;
+    background-color: teal;
     margin-bottom: 2rem;
+    border-radius: 8px;
 }
 
 .header__nav {

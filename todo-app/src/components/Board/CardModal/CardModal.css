@@ -1,9 +1,46 @@
 .cardModal__container {
     width: 500px;
     height: 500px;
-    background: rgb(206, 202, 202);
+    background: rgb(8, 134, 118);
     top:100px;
     left: 250px;
     z-index: 100;
     position: absolute;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.cardModal__header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 200px;
+    font-size: 1.5rem;
+    box-sizing: border-box;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.cardModal__cardTitle{
+    margin-bottom: 20px;
+}
+
+.cardModal__cardTitle__input{
+
+    border-radius: 3px;
+}
+
+
+.cardModal__cardDescription{
+    margin-bottom: 20px;
+}
+
+.cardModal__cardList{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
