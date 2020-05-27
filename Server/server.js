@@ -6,6 +6,22 @@ const {getClient, getDB, createObjectId} = require('./db');
 
 app.use(express.json());
 
+// app.use(( req, res, next ) => {
+//     let data = '';
+//     console.log(data)
+//     req.on('data', function( chunk ) {
+//       data += chunk;
+//     });
+//     req.on('end', function() {
+//       req.rawBody = data;
+//       console.log( 'on end: ', data )
+//       if (data && data.indexOf('{') > -1 ) {
+//         req.body = JSON.parse(data);
+//       }
+//       next();
+//     });
+//   });
+
 app.use((req, res, next) => {
     const startHrTime = Date.now();
     res.once('finish', () => {
@@ -16,9 +32,15 @@ app.use((req, res, next) => {
     next();
 });
 
-app.get('/', (req, res) => {
-    res.send('hello world');
+app.use((req, res, next) => {
+    let data = req.body;
+    if (!data) {
+        res.status(400).end();
+        return;
+    }
+    next();
 });
+
 
 app.get('/lists', (req, res) => {
     const db = getDB();
@@ -27,10 +49,10 @@ app.get('/lists', (req, res) => {
     .find()
     .toArray()
     .then(data => {
-        res.send(data)
+        res.status(200).send(data)
     })
     .catch(err => {
-        res.status(500).end();
+        res.status(500).end(err);
     });
 });
 
@@ -50,16 +72,15 @@ app.post('/lists', (req, res) => {
 
 app.get('/cards', (req,res) => {
     const db=getDB()
-    let data = req.data;
-    
+    let data = req.data;  
     db.collection('Cards')
         .find()
         .toArray()
         .then(data => {
-            res.send(data);
+            res.status(200).send(data);
         })
         .catch(err => {
-            res.status(500).end()
+            res.status(500).end(err)
         });
 })
 
@@ -86,7 +107,7 @@ app.delete('/cards/:id', (req, res) => {
     .removeOne({_id: createObjectId(cardId)})
     .then(card => {
         console.log('card deleted')
-        res.status(200).send('card deleted')
+        res.status(204).send('card deleted')
     })
     .catch(err => {
         res.status(500).send(err)
@@ -101,7 +122,7 @@ app.patch('/cards/:id', (req, res) => {
     db.collection('Cards')
     .updateOne({_id: createObjectId(cardId)},{$set:{cardDescription: data.cardDescription, cardTitle: data.cardTitle, listId: data.listId}})
     .then(result => {
-        res.status(200).send('card updated');
+        res.status(202).send('card updated');
     })
     .catch(err => {
         console.log(err)
@@ -115,7 +136,7 @@ app.delete('/lists/:id', (req, res) => {
     db.collection('Lists')
     .removeOne({_id: createObjectId(listId)})
     .then(result => {
-        res.status(200).send(result)
+        res.status(204).send(result)
     })
     .catch(err => {
         res.status(500).send()
@@ -125,3 +146,4 @@ app.delete('/lists/:id', (req, res) => {
 server.listen(PORT, () => {
     console.log(`Server started on port ${PORT}`);
 });
+

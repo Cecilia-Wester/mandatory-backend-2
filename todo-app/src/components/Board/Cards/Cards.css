@@ -5,11 +5,11 @@
 }
 
 .cards__cardContent{
-    width: 300px;
+    width: 270px;
     box-sizing: border-box;
-    margin: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
+    
 }
 

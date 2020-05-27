@@ -46,7 +46,7 @@ export default function CardModal({setCardModal, cardTitle, cardDescription, set
         Axios.delete(`/cards/${id}`)
         .then(res => {
             setCardModal(false);
-            fetchCard()
+            fetchCard();
         })
         .catch(err => {
             console.log(err);
@@ -107,7 +107,7 @@ export default function CardModal({setCardModal, cardTitle, cardDescription, set
                     </label>
                 </div>
                 <div className='cardModal__cardList'>
-                    <select id="select" onChange={(e) => onChangeList(e)}>
+                    <select id="select" onClick={(e) => onChangeList(e)}>
                         {lists.map((list, index) => {
                             return(
                                 <option value={list._id} key={index}>{list.listTitle}</option> 

@@ -18,7 +18,7 @@ export default function Cards({cardTitle, setCardTitle, cardId, cardDescription,
                     </Typography>
                 </CardContent>
             </Card>
-            {cardModal && <CardModal setCardModal={setCardModal} cardTitle={cardTitle} setCardTitle={setCardTitle} cardId={cardId} time={time} cardDescription={cardDescription} setCardDescription={setCardDescription} listId={listId} setListId={setListId} fetchCard={fetchCard} lists={lists} fetchList={fetchList} />}
+            {cardModal && <CardModal setCardModal={setCardModal} cardTitle={cardTitle} setCardTitle={setCardTitle} cardId={cardId} time={time} cardDescription={cardDescription} setCardDescription={setCardDescription} listId={listId} fetchCard={fetchCard} lists={lists} fetchList={fetchList} />}
         </div>
     )
 }

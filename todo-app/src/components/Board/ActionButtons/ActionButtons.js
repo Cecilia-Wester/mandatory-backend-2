@@ -55,11 +55,13 @@ export default function ActionButtons({  lists, listId, setListId, setCardTitle,
                             //onBlur={setIsEditing(false)}
                         />
                     </Card>
-                    <Button 
-                        type='submit'
-                        >Add Card
-                    </Button>
-                    <CloseIcon className='addCard__closebtn' onClick={(e) => setIsEditing(false )}>Close</CloseIcon>
+                    <div className='addCard__form__buttons'>
+                        <Button 
+                            type='submit'
+                            >Add Card
+                        </Button>
+                        <CloseIcon className='addCard__closebtn' onClick={(e) => setIsEditing(false )}>Close</CloseIcon>
+                    </div>
                 </form>
             </div>
         )

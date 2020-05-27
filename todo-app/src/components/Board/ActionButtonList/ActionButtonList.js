@@ -7,7 +7,6 @@ import { TextareaAutosize } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close'
 
 export default function ActionButtonList({ isEditingList, setIsEditingList, listTitle, setListTitle, fetchList }){
-    
     function onSubmitList(e){
         e.preventDefault();
         setIsEditingList(false);
@@ -34,7 +33,6 @@ export default function ActionButtonList({ isEditingList, setIsEditingList, list
                     <TextareaAutosize
                         className='addList__input'
                         type='text'
-                        text={listTitle}
                         name='list'
                         onChange={(e) => setListTitle(e.target.value) }
                         placeholder='Enter a title...'

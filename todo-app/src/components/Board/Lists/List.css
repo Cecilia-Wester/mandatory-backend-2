@@ -7,10 +7,13 @@
     border-radius: 8px;
     align-items: center;
     justify-content: center;
+    width: 300px;
+    box-sizing: border-box;
 }
 
 .list__singleList__card{
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 300px;
 }

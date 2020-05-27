@@ -17,6 +17,7 @@ export default function Lists () {
     function fetchList(){
         Axios.get('/lists')
         .then(res => {
+            console.log(res)
             console.log(res.data);
             setLists(res.data);
         })
@@ -34,7 +35,7 @@ export default function Lists () {
                 {lists.map(list => {
                     return(
                         <div key={list._id} className='list__singleList'>
-                            <List listId={list._id} setListId={setListId} listTitle={list.listTitle} lists={lists} fetchList={fetchList} />
+                            <List listId={list._id} listTitle={list.listTitle} lists={lists} fetchList={fetchList} />
                         </div>
                     )
                 })}
