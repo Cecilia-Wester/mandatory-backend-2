@@ -7,6 +7,7 @@ import CardModal from '../CardModal/CardModal';
 
 export default function Cards({cardTitle, setCardTitle, cardId, cardDescription, listId, setListId, time, setCardDescription, fetchCard, lists, fetchList}) {
     const [cardModal, setCardModal] = useState(false);
+
     return(
         <div className='cards__container'>
             <Card>

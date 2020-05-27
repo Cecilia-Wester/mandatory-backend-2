@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import Axios from 'axios';
 import Button from '@material-ui/core/Button';
 import CloseIcon from '@material-ui/icons/Close';
 import './CardModal.css';
 import { TextareaAutosize } from '@material-ui/core';
-import Lists from '../Lists/Lists';
 
 export default function CardModal({setCardModal, cardTitle, cardDescription, setCardDescription, setCardTitle, cardId, listId, listTitle, time, fetchCard, lists, fetchList}){
     const [newTitle, setNewTitle] = useState('');
@@ -96,7 +95,7 @@ export default function CardModal({setCardModal, cardTitle, cardDescription, set
                         <TextareaAutosize
                             className='cardModal__cardTitle__input'
                             id='cardDescription'
-                            rendervalue={cardDescription}
+                            text={cardDescription}
                             name='cardDescription'
                             type='text'
                             onChange={(e) => onChangeCardDescription(e)}

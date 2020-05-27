@@ -27,9 +27,8 @@ export default function ActionButtons({  lists, listId, setListId, setCardTitle,
                 cardDescription: null
             })
             .then(res => {
-                console.log(res)
-                setCardTitle(cardTitle)
                 fetchCard();
+                setCardTitle('')
             })
             .catch(err =>{
                 console.log(err);
@@ -47,12 +46,11 @@ export default function ActionButtons({  lists, listId, setListId, setCardTitle,
                         <TextareaAutosize
                             className='addCard__input'
                             type='text'
-                            text={cardTitle}
+                            value={cardTitle}
                             name='name'
                             onChange={(e) => setCardTitle(e.target.value)}
                             placeholder='Enter a title...'
                             autoFocus
-                            //onBlur={setIsEditing(false)}
                         />
                     </Card>
                     <div className='addCard__form__buttons'>

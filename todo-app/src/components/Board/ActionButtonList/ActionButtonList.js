@@ -16,8 +16,8 @@ export default function ActionButtonList({ isEditingList, setIsEditingList, list
             })
             .then(res => {
                 console.log(res)
-                setListTitle(listTitle);
                 fetchList();
+                setListTitle('')
             })
             .catch(err =>{
                 console.log(err);
@@ -34,16 +34,18 @@ export default function ActionButtonList({ isEditingList, setIsEditingList, list
                         className='addList__input'
                         type='text'
                         name='list'
+                        value={listTitle}
                         onChange={(e) => setListTitle(e.target.value) }
                         placeholder='Enter a title...'
                         autoFocus
-                        //onBlur={setIsEditing(false)}
                     />
-                    <Button 
-                        type='submit'
-                        >Add List
-                    </Button>
-                    <CloseIcon className='addCard__closebtn' onClick={(e) => setIsEditingList(false)}>Close</CloseIcon>
+                    <div className='addList__buttons'>
+                        <Button 
+                            type='submit'
+                            >Add List
+                        </Button>
+                        <CloseIcon className='addCard__closebtn' onClick={(e) => setIsEditingList(false)}>Close</CloseIcon>
+                    </div>
                 </form>
             </div>
         )

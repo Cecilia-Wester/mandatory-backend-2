@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import './Boards.css';
-import Buttons from './Buttons/Buttons';
 import axios from 'axios';
 
 export default function Boards (){
