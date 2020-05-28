@@ -15,9 +15,9 @@ export default function ActionButtonList({ isEditingList, setIsEditingList, list
                 listTitle: listTitle,
             })
             .then(res => {
-                console.log(res)
+                console.log(res);
                 fetchList();
-                setListTitle('')
+                setListTitle('');
             })
             .catch(err =>{
                 console.log(err);

@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import './Lists.css';
 import axios  from 'axios';
 import ActionButtonList from '../ActionButtonList/ActionButtonList';
-import List from './List'
+import List from './List';
+import ErrorModal from '../ErrorModal';
 
 export default function Lists () {
+    const [errorModal, setErrorModal] = useState(false);
+    const [error, setError] = useState('')
     const [listTitle, setListTitle] = useState('');
-    // const [listId, setListId] = useState('')
     const [lists, setLists] = useState([]);
     const [isEditingList, setIsEditingList] = useState(false);
     const [cards, setCards] = useState([]);
@@ -19,7 +21,8 @@ export default function Lists () {
     function fetchList(){
         axios.get('/lists')
         .then(res => {
-            if(res.data.length===0){
+            if(!res.data.length){
+                setLists([])
                 return;
             }
             setLists(res.data);
@@ -36,6 +39,10 @@ export default function Lists () {
     function fetchCard (){
         axios.get('/cards')
         .then(res => {
+            if(!res.data.length){
+                setCards([]);
+                return;
+            }
             setCards(res.data)
         })
         .catch(err => {
@@ -54,7 +61,7 @@ export default function Lists () {
                     listCards = cards.filter(card => card.listId === list._id)
                     return(
                         <div key={list._id} className='list__singleList'>
-                            <List listId={list._id} listTitle={list.listTitle} lists={lists} fetchList={fetchList} fetchCard={fetchCard} listCards={listCards}/>
+                            <List listId={list._id} listTitle={list.listTitle} lists={lists} fetchList={fetchList} fetchCard={fetchCard} listCards={listCards} cards={cards}/>
                         </div>
                     )
                 })}
@@ -62,5 +69,4 @@ export default function Lists () {
             </div>
         </div>
     )
-            
 }

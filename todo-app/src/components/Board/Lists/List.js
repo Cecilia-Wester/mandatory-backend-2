@@ -7,12 +7,11 @@ import './List.css';
 
 export default function List ({listId, listTitle, fetchList, lists, listCards, fetchCard}){
     const [cardDescription, setCardDescription] = useState('');
-    const [cardTitle, setCardTitle] = useState('')
-    console.log(listCards)
+    const [cardTitle, setCardTitle] = useState('');
 
     function listDelete(e, id){
         e.preventDefault()
-        axios.delete(`/lists/${id}`)
+        axios.delete(`/lists/${id}/`)
         .then(res => {
             console.log(res);
             fetchList()

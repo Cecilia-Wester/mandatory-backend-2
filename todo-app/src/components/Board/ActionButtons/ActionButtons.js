@@ -28,7 +28,7 @@ export default function ActionButtons({  lists, listId, setListId, setCardTitle,
             })
             .then(res => {
                 fetchCard();
-                setCardTitle('')
+                setCardTitle('');
             })
             .catch(err =>{
                 console.log(err);

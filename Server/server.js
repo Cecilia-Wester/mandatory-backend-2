@@ -72,7 +72,7 @@ app.post('/lists', (req, res) => {
     const db = getDB();
     let data = req.body;
     if(!data){
-        res.status(404).end();
+        res.status(400).end();
         return;
     }
     db.collection('Lists')
@@ -91,7 +91,7 @@ app.post('/cards', (req, res) => {
     let data = req.body;
     console.log(data)
     if(!data){
-        res.status(404).end();
+        res.status(400).end();
         return;
     }
     db.collection('Cards')
@@ -111,7 +111,7 @@ app.patch('/cards/:id', (req, res) => {
     let data = req.body;
     const db = getDB();
     if(!data){
-        res.status(404).end();
+        res.status(400).end();
         return;
     }
     db.collection('Cards')
@@ -125,18 +125,51 @@ app.patch('/cards/:id', (req, res) => {
     });
 })
 
-app.delete('/lists/:id', (req, res) => {
+app.delete('/lists/:id/', (req, res) => {
     let listId = req.params.id;
     const db = getDB()
     db.collection('Lists')
     .removeOne({_id: createObjectId(listId)})
     .then(result => {
-        res.status(204).send(result)
+        res.status(204).end()
     })
     .catch(err => {
         res.status(500).end()
     });
+    db.collection('Cards')
+    .deleteMany({listId: listId})
+    .then(result => {
+        res.status(204).end()
+    })
+    .catch(err =>{  
+        res.status(500).end()
+    })
 })
+
+
+// app.delete('/lists/:id/', (req, res) => {
+//     let listId = req.params.id;
+    
+//     const db = getDB()
+    
+//     db.collection('Lists')
+//     .removeOne({_id: createObjectId(listId)})
+//     .then(result => {
+//         res.status(204).end()
+//     })
+//     .catch(err => {
+//         res.status(500).end()
+//     });
+    // db.collection('Cards')
+    // .deleteMany({cards: cards})
+    // .then(result => {
+    //     res.status(204).end()
+    // })
+    // .catch(err =>{  
+    //     res.status(500).end()
+
+    // })
+//})
 
 app.delete('/cards/:id', (req, res) => {
     let cardId = req.params.id;
