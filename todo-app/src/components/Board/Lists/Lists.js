@@ -3,11 +3,8 @@ import './Lists.css';
 import axios  from 'axios';
 import ActionButtonList from '../ActionButtonList/ActionButtonList';
 import List from './List';
-import ErrorModal from '../ErrorModal';
 
 export default function Lists () {
-    const [errorModal, setErrorModal] = useState(false);
-    const [error, setError] = useState('')
     const [listTitle, setListTitle] = useState('');
     const [lists, setLists] = useState([]);
     const [isEditingList, setIsEditingList] = useState(false);
